@@ -1,5 +1,7 @@
 type PokemonStats = {
-    hp: number,
+    hp?: number,
+    maxHP?: number,
+    currentHP?: number,
     attack: number,
     defense: number,
     specialAttack: number,
