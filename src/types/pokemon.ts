@@ -1,15 +1,21 @@
 import PokemonStats from "./pokemonStats";
+import PokemonType from "./pokemonType";
+import Move from "./move";
 
 class Pokemon {
   public name: string;
   public baseStats: PokemonStats;
   public stats: PokemonStats;
   public level: number;
+  public type: PokemonType;
+  public moves: Move[];
 
-  constructor(name: string, baseStats: PokemonStats, level: number) {
+  constructor(name: string, baseStats: PokemonStats, level: number, type: PokemonType, moves: Move[]) {
     this.name = name;
     this.baseStats = baseStats;
     this.level = level;
+    this.type = type;
+    this.moves = moves;
 
     this.stats = {
       maxHP: this.calculateHP(),
