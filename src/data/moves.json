@@ -104,13 +104,13 @@
   {
     "name": "Absorb",
     "type": "Grass",
-    "power": 15,
+    "power": 50,
     "isPhysical": false
   },
   {
     "name": "Giga Drain",
     "type": "Grass",
-    "power": 40,
+    "power": 75,
     "isPhysical": false
   },
   {

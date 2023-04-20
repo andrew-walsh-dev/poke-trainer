@@ -1,0 +1,51 @@
+[
+    {
+      "name": "Bulbasaur",
+      "type": "Grass",
+      "baseStats": {
+        "hp": 45,
+        "attack": 49,
+        "defense": 49,
+        "specialAttack": 65,
+        "specialDefense": 65,
+        "speed": 45
+      }
+    },
+    {
+      "name": "Charmander",
+      "type": "Fire",
+      "baseStats": {
+        "hp": 39,
+        "attack": 52,
+        "defense": 43,
+        "specialAttack": 60,
+        "specialDefense": 50,
+        "speed": 65
+      }
+    },
+    {
+      "name": "Squirtle",
+      "type": "Water",
+      "baseStats": {
+        "hp": 44,
+        "attack": 48,
+        "defense": 65,
+        "specialAttack": 50,
+        "specialDefense": 64,
+        "speed": 43
+      }
+    },
+    {
+      "name": "Rattata",
+      "type": "Normal",
+      "baseStats": {
+        "hp": 30,
+        "attack": 56,
+        "defense": 35,
+        "specialAttack": 25,
+        "specialDefense": 35,
+        "speed": 72
+      }
+    }
+  ]
+  

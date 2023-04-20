@@ -7,6 +7,7 @@ class Battle {
   public enemyPokemon: Pokemon;
   public playerBench: Pokemon[];
   public enemyBench: Pokemon[];
+  public turn: "player" | "enemy";
 
   constructor(
     playerPokemon: Pokemon,
@@ -18,17 +19,28 @@ class Battle {
     this.enemyPokemon = enemyPokemon;
     this.playerBench = playerBench;
     this.enemyBench = enemyBench;
+    this.turn = this.get_first_mover();
   }
 
   initiateBattle(pokemon1: Pokemon, pokemon2: Pokemon): void {}
 
-  calculateMoveOrder(pokemon1: Pokemon, pokemon2: Pokemon): [Pokemon, Pokemon] {
-    if (pokemon1.stats.speed > pokemon2.stats.speed) {
-      return [pokemon1, pokemon2];
-    } else return [pokemon2, pokemon1];
+  get_first_mover(): "player" | "enemy" {
+    if (this.playerPokemon.stats.speed >= this.enemyPokemon.stats.speed) {
+      return "player";
+    } else return "enemy";
   }
 
-  executeMove(pokemon: Pokemon, move: Move, target: Pokemon): void {}
+  executeMove(pokemon: Pokemon, move: Move, target: Pokemon): void {
+    const damage = this.calculateDamage(pokemon, move, target);
+    target.takeDamage(damage);
+    this.switchTurn();
+  }
+
+  switchTurn(): void {
+    if (this.turn === "player") {
+      this.turn = "enemy";
+    } else this.turn = "player";
+  }
 
   calculateDamage(pokemon: Pokemon, move: Move, target: Pokemon): number {
     // Get the attacker's effective Attack or Special Attack stat
