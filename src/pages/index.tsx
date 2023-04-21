@@ -1,9 +1,7 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import Pokemon from '@/types/pokemon';
 import { useState } from 'react';
 import CreatePokemonForm from '@/components/CreatePokemonForm';
-import PokemonCard from '@/components/PokemonCard';
 import PokemonCards from '@/components/PokemonCards';
 
 const inter = Inter({ subsets: ['latin'] })

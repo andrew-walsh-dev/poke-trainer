@@ -9,7 +9,7 @@ interface CardsProps {
 const PokemonCards: React.FC<CardsProps> = (props) => {
     return (
         <Fragment>
-        <div className="flex flex-wrap">
+            <div className="flex flex-wrap">
                 {props.pokemons.map((pokemon) => <PokemonCard key={pokemon.name} pokemon={pokemon} />)}
             </div>
         </Fragment>
