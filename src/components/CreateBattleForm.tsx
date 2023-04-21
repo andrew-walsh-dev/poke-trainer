@@ -5,7 +5,7 @@ interface CreateBattleProps {
     pokemons: Pokemon[];
 }
 
-const CreateBattleForm: React.FC<CreateBattleProps> = (props): JSX.Element {
+const CreateBattleForm: React.FC<CreateBattleProps> = (props): JSX.Element => {
     return (
         <Fragment>
             

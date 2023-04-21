@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, ReactEventHandler, useState } from "react";
 import Pokemon from "@/types/pokemon";
 import Move from "@/types/move";
 
 interface CreatePokemonFormProps {
-  pokemons: Pokemon[];
-  setPokemons: (pokemons: Pokemon[]) => void;
+  playerTeam: Pokemon[];
+  enemyTeam: Pokemon[];
+  setPlayerTeam: (pokemons: Pokemon[]) => void;
+  setEnemyTeam: (pokemons: Pokemon[]) => void;
 }
 
 const CreatePokemonForm: React.FC<CreatePokemonFormProps> = (props): JSX.Element => {
@@ -14,13 +16,11 @@ const CreatePokemonForm: React.FC<CreatePokemonFormProps> = (props): JSX.Element
   const [level, setLevel] = useState<number>(2);
   const [selectedMoveName, setSelectedMoveName] = useState<string>("Tackle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent, team: string) => {
     e.preventDefault();
 
     const selectedPokemon = pokemonOptions.filter((pokemon) => pokemon.name === selectedPokemonName)[0]
     const selectedMove = moveOptions.filter((move) => move.name === selectedMoveName)[0]
-
-    console.log(selectedPokemonName, selectedPokemon);
 
     const name = selectedPokemon.name;
     const baseStats = selectedPokemon.baseStats;
@@ -34,13 +34,15 @@ const CreatePokemonForm: React.FC<CreatePokemonFormProps> = (props): JSX.Element
         type,
         [selectedMove]
       );
-      props.setPokemons([...props.pokemons, pokemon]);
+      if (team === "player") {
+        props.setPlayerTeam([...props.playerTeam, pokemon]);
+      } else props.setEnemyTeam([...props.enemyTeam, pokemon]);
     }
   };
 
   return (
     <Fragment>
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md max-w-md mx-auto">
+      <form className="bg-white p-6 rounded shadow-md max-w-md mx-auto">
         <div className="mb-4">
           <label htmlFor="pokemon" className="block text-gray-700 text-sm font-bold mb-2">
             Select Pokemon:
@@ -90,10 +92,16 @@ const CreatePokemonForm: React.FC<CreatePokemonFormProps> = (props): JSX.Element
           />
         </div>
         <button
-          type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
+          onClick={(e) => handleSubmit(e, "player")}
+          className="w-50 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
         >
-          Create Pokemon
+          Add to player team
+        </button>
+        <button
+          onClick={(e) => handleSubmit(e, "enemy")}
+          className="w-50 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
+        >
+          Add to enemy team
         </button>
       </form>
     </Fragment>
