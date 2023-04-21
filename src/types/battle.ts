@@ -19,12 +19,12 @@ class Battle {
     this.enemyPokemon = enemyPokemon;
     this.playerBench = playerBench;
     this.enemyBench = enemyBench;
-    this.turn = this.get_first_mover();
+    this.turn = this.getFirstMover();
   }
 
   initiateBattle(pokemon1: Pokemon, pokemon2: Pokemon): void {}
 
-  get_first_mover(): "player" | "enemy" {
+  getFirstMover(): "player" | "enemy" {
     if (this.playerPokemon.stats.speed >= this.enemyPokemon.stats.speed) {
       return "player";
     } else return "enemy";

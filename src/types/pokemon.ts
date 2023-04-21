@@ -65,17 +65,16 @@ class Pokemon {
         Math.floor((this.baseStats.hp * 2 * this.level) / 100) + this.level + 10
       );
     }
-    throw new Error(`Base HP not set on Pokemon ${this.name}`);
+    else throw new Error(`Base HP not set on Pokemon ${this.name}`);
   }
 
   takeDamage(amount: number): void {
     if (this.stats.currentHP) {
-      this.stats.currentHP += amount;
+      this.stats.currentHP -= amount;
       if (this.stats.currentHP < 0) {
         this.stats.currentHP = 0;
       }
-    }
-    throw new Error(`Current HP not set on Pokemon ${this.name}`);
+    } else throw new Error(`Current HP not set on Pokemon ${this.name}`);
   }
 
   heal(amount: number): void {
@@ -85,14 +84,19 @@ class Pokemon {
         this.stats.currentHP = this.stats.maxHP;
       }
     }
-    throw new Error(`Current HP / Max HP not set on Pokemon ${this.name}`);
+    else throw new Error(`Current HP / Max HP not set on Pokemon ${this.name}`);
   }
 
   isFainted(): boolean {
     if (this.stats.currentHP) {
       return this.stats.currentHP <= 0;
     }
-    throw new Error(`Current HP not set on Pokemon ${this.name}`);
+    else throw new Error(`Current HP not set on Pokemon ${this.name}`);
+  }
+
+  getRandomMove(): Move {
+    const randomIndex = Math.floor(Math.random() * this.moves.length);
+    return this.moves[randomIndex];
   }
 }
 
